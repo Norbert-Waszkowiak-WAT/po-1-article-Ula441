@@ -1,39 +1,35 @@
-#ifndef BOOK_H
-#define BOOK_H
-#include<iostream>
-#include<string>
-#include "author.cpp"
-#include "article.cpp"
-#include "chapter.cpp"
-#include<vector>
-class Book{
-    private:
-        std::string title;
-        Author author;
-        int publicationYear;
-        std::vector<Chapter> chapters;
-    public:
-        Book()
-        : title(""), author(Author()), publicationYear(0),chapters(0){};
-        Book(std::string bookTitle, Author bookAuthor, int year,std::vector<Chapter> &bookChapter)
-        : title(bookTitle), author(bookAuthor), publicationYear(year), chapters(bookChapter){};
-        void addChapter(Chapter &chapter){
-            chapters.push_back(chapter);
-        }
-        std::string getTitle(){
-            return title;
-        }
-        Author getAuthor(){
-            return author;
-        }
-        int getPublicationYear(){
-            return publicationYear;
-        }
-        std::vector<Chapter> getChapters(){
-            return chapters;
-        }
-        void displayInfo(){
-            std::cout<< "mosteekk";
-        }
-};
-#endif
+#include "book.h"
+#include "author.h"
+#include <iostream>
+
+Book::Book() : title(""), author(Author()), publicationYear(0) {}
+
+Book::Book(const string &bookTitle, const Author &bookAuthor, int year, const vector<Chapter>& bookChapters)
+        : title(bookTitle), author(bookAuthor), publicationYear(year), chapters(bookChapters) {}
+
+void Book::addChapter(const Chapter &chapter) {
+    chapters.push_back(chapter);
+}
+
+void Book::displayInfo() const{
+    std::cout << "Book: " << title << " by " << author.toString() << " (" << publicationYear << ")" << endl;
+    for (const Chapter &chapter: chapters) {
+        chapter.displayInfo();
+    }
+}
+
+const string &Book::getTitle() const {
+    return title;
+}
+
+const Author &Book::getAuthor() const {
+    return author;
+}
+
+int Book::getPublicationYear() const {
+    return publicationYear;
+}
+
+const vector<Chapter> &Book::getChapters() const {
+    return chapters;
+}

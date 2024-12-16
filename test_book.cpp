@@ -1,7 +1,7 @@
 #include "catch_amalgamated.hpp"
-#include "book.cpp"
-#include "chapter.cpp"
-#include "author.cpp"
+#include "book.h"
+#include "chapter.h"
+#include "author.h"
 
 TEST_CASE("Book default constructor initializes with default values", "[constructor]") {
     Book book;
